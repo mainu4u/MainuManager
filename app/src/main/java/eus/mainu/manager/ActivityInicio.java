@@ -8,8 +8,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import eus.mainu.manager.datalayer.Valoracion;
+import eus.mainu.manager.internet.HttpGetRequest;
 
 public class ActivityInicio extends AppCompatActivity {
 
@@ -32,13 +36,13 @@ public class ActivityInicio extends AppCompatActivity {
             public void run() {
 
                 //Codigo que se ejecuta al de x tiempo
-                consigueDatos();
+                ArrayList<Valoracion> arrayValoraciones = consigueDatos();
 
                 //Decimos que queremos navegar a la activity main
                 Intent intent = new Intent().setClass(
                         ActivityInicio.this, ActivityMain.class);
                 //Le pasamos la informacion que necesita la clase
-                //intent.putExtra("Menu",menu);
+                intent.putExtra("arrayValoraciones",arrayValoraciones);
 
                 //Iniciamos la actividad
                 startActivity(intent);
@@ -50,9 +54,20 @@ public class ActivityInicio extends AppCompatActivity {
         timer.schedule(task, SPLASH_SCREEN_DELAY);
     }
 
-    private void consigueDatos(){
+    private ArrayList<Valoracion> consigueDatos(){
 
-       Log.d(TAG, "onCreate: Datos conseguidos");
+
+
+        HttpGetRequest request = new HttpGetRequest();
+        ArrayList<Valoracion> arrayValoraciones = new ArrayList<>();
+
+        if(request.isConnected(this) ) {
+            arrayValoraciones = request.getValoraciones();
+        }
+
+        Log.d(TAG, "onCreate: Datos conseguidos");
+
+        return arrayValoraciones;
 
     }
 }

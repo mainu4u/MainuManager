@@ -40,7 +40,7 @@ public class FragmentoValoraciones extends Fragment {
         mContext = getContext();
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            arrayValoraciones = (ArrayList<Valoracion>) bundle.getSerializable("listaValoraciones");
+            arrayValoraciones = (ArrayList<Valoracion>) bundle.getSerializable("arrayValoraciones");
         }
 
     }
