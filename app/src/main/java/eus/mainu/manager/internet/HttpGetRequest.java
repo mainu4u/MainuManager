@@ -26,8 +26,7 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         String url = params[0];
         String result, inputLine;
-        String basicAuth = "Basic " + Base64.encodeToString("usuario:contraseña".getBytes(), Base64.NO_WRAP);
-
+        String basicAuth = "Basic " + Base64.encodeToString("usuario:clave".getBytes(), Base64.NO_WRAP);
 
         try {
             URL myUrl = new URL(url);
@@ -89,6 +88,27 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
 
         return valoraciones;
 
+    }
+
+    public void aceptar(Valoracion valoracion){
+
+        try {
+            String result = execute("https://api.mainu.eus/update_val/bocadillos/"+valoracion.getId()+"?action=visible").get();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cancelar(Valoracion valoracion){
+
+
+        try {
+            String result = execute("https://api.mainu.eus/update_val/bocadillos/"+valoracion.getId()+"?action=delete").get();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -9,7 +9,7 @@
     android:orientation="horizontal"
     android:padding="10dp">
 
-    <ImageButton
+    <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
@@ -33,6 +33,7 @@
         android:id="@+id/comentarioUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="190dp"
         android:layout_alignStart="@+id/nombreUsuario"
         android:layout_below="@+id/nombreUsuario"
         android:fontFamily="@font/roboto_light"
@@ -50,6 +51,26 @@
         android:layout_toEndOf="@+id/nombreUsuario"
         android:layout_marginStart="5dp"/>
 
+
+    <ImageButton
+        android:id="@+id/botonAceptar"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="59dp"
+        android:background="@color/transparente"
+        app:srcCompat="@drawable/aceptar" />
+
+    <ImageButton
+        android:id="@+id/botonCancelar"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="11dp"
+        android:background="@color/transparente"
+        app:srcCompat="@drawable/cancelar" />
 
 
 

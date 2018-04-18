@@ -9,7 +9,8 @@
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/contenedor" />
+        android:id="@+id/contenedor"
+        android:layout_marginBottom="50dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
