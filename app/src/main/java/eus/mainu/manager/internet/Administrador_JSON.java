@@ -34,7 +34,8 @@ class Administrador_JSON {
                         getInt(o,"id"),
                         getDouble(o,"precio"),
                         getString(o,"texto"),
-                        getUsuario(o.getJSONObject("usuario"))));
+                        getUsuario(o.getJSONObject("usuario")),
+                        getString(o,"type")));
 
             }
         } catch (Exception e) {

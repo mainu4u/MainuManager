@@ -13,14 +13,23 @@ public class Valoracion implements Serializable{
     private double puntuacion;
     private String comentario;
     private Usuario usuario;
+    private String tipo;
 
-    public Valoracion(int id, double puntuacion, String comentario, Usuario usuario) {
+    public Valoracion(int id, double puntuacion, String comentario, Usuario usuario, String tipo) {
         this.id = id;
         this.puntuacion = puntuacion;
         this.comentario = comentario;
         this.usuario = usuario;
+        this.tipo = tipo;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     public int getId() {
         return id;

@@ -76,7 +76,7 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
         ArrayList<Valoracion> valoraciones = new ArrayList<>();
 
         try {
-            result = execute("https://api.mainu.eus/valoraciones/bocadillos").get();
+            result = execute("https://api.mainu.eus/valoraciones").get();
 
             Administrador_JSON json = new Administrador_JSON();
             valoraciones = json.getValoraciones(result);
@@ -93,7 +93,7 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
     public void aceptar(Valoracion valoracion){
 
         try {
-            String result = execute("https://api.mainu.eus/update_val/bocadillos/"+valoracion.getId()+"?action=visible").get();
+            String result = execute("https://api.mainu.eus/update_val/"+valoracion.getTipo()+"/"+valoracion.getId()+"?action=visible").get();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,7 +104,7 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
 
 
         try {
-            String result = execute("https://api.mainu.eus/update_val/bocadillos/"+valoracion.getId()+"?action=delete").get();
+            String result = execute("https://api.mainu.eus/update_val/"+valoracion.getTipo()+"/"+valoracion.getId()+"?action=delete").get();
 
         } catch (Exception e) {
             e.printStackTrace();
