@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import eus.mainu.manager.adaptadores.AdaptadorValoraciones;
 import eus.mainu.manager.datalayer.Valoracion;
+import eus.mainu.manager.internet.HttpGetRequest;
 
 public class FragmentoValoraciones extends Fragment {
 
@@ -90,6 +91,13 @@ public class FragmentoValoraciones extends Fragment {
             //Accion que se ejecuta cuando se activa
             @Override
             public void onRefresh() {
+                //Creamos otro request porque solo se puede llamar al asynctask una vez
+                HttpGetRequest request = new HttpGetRequest();
+
+                if(request.isConnected(mContext)){
+                    arrayValoraciones = request.getValoraciones();
+                    setValoraciones();
+                }
 
                 //Esto es para ejecutar un hilo que se encarga de hacer la accion, creo
                 new Handler().postDelayed(new Runnable() {
