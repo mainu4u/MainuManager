@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import eus.mainu.manager.R;
+import eus.mainu.manager.datalayer.Imagen;
 import eus.mainu.manager.datalayer.Valoracion;
 
 
@@ -90,10 +91,41 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
 
     }
 
+    //Metodo para pedir el menu del dia, todas las operaciones de parseo del mensaje JSON se hacen dentro de el
+    public ArrayList<Imagen> getImagenes() {
+
+        String result;
+        ArrayList<Imagen> imagenes = new ArrayList<>();
+
+        try {
+            result = execute("https://api.mainu.eus/imagenes").get();
+
+            Administrador_JSON json = new Administrador_JSON();
+            imagenes = json.getImagenes(result);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return imagenes;
+
+    }
+
     public void aceptar(Valoracion valoracion){
 
         try {
             String result = execute("https://api.mainu.eus/update_val/"+valoracion.getTipo()+"/"+valoracion.getId()+"?action=visible").get();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void aceptar(Imagen imagen){
+
+        try {
+            String result = execute("https://api.mainu.eus/update_val/"+imagen.getTipo()+"/"+imagen.getId()+"?action=visible").get();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,6 +137,17 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
 
         try {
             String result = execute("https://api.mainu.eus/update_val/"+valoracion.getTipo()+"/"+valoracion.getId()+"?action=delete").get();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cancelar(Imagen imagen){
+
+
+        try {
+            String result = execute("https://api.mainu.eus/update_val/"+imagen.getTipo()+"/"+imagen.getId()+"?action=delete").get();
 
         } catch (Exception e) {
             e.printStackTrace();

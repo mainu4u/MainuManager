@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Random;
 
+import eus.mainu.manager.datalayer.Imagen;
 import eus.mainu.manager.datalayer.Usuario;
 import eus.mainu.manager.datalayer.Valoracion;
 
@@ -43,6 +44,31 @@ class Administrador_JSON {
         }
 
         return arrayValoracion;
+    }
+
+    //Metodo para pedir el listado de bocadillos, todas las operaciones de parseo del mensaje JSON se hacen dentro de el
+    ArrayList<Imagen> getImagenes(String result){
+
+        ArrayList<Imagen> arrayImagenes = new ArrayList<>();
+
+        try {
+            JSONArray obj = new JSONArray(result);
+            for (int i = 0; i < obj.length(); i++){
+                JSONObject o = obj.getJSONObject(i);
+
+                //Creamos el bocadillo
+                arrayImagenes.add(new Imagen(
+                        getInt(o,"id"),
+                        getString(o,"ruta"),
+                        getUsuario(o.getJSONObject("usuario")),
+                        getString(o,"type")));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return arrayImagenes;
     }
 
     //Metodo para leer un INT de un JSONObject

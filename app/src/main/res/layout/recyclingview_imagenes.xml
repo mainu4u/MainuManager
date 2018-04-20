@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Plantilla para el recycling view de los Bocadillos, se representara en funcion de este layout-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/fotoUsuario1"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/transparente"
+        app:srcCompat="@drawable/mainu_logo" />
+
+    <TextView
+        android:id="@+id/nombreUsuario1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_light"
+        android:layout_alignEnd="@+id/fotoUsuario1"
+        android:layout_alignStart="@+id/fotoUsuario1"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/fotoUsuario1"
+        android:background="@color/azultransparente"
+        android:text="@string/nombre"
+        android:textStyle="bold" />
+
+
+    <ImageButton
+        android:id="@+id/botonAceptar1"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="59dp"
+        android:background="@color/transparente"
+        app:srcCompat="@drawable/aceptar" />
+
+    <ImageButton
+        android:id="@+id/botonCancelar1"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="11dp"
+        android:background="@color/transparente"
+        app:srcCompat="@drawable/cancelar" />
+
+
+
+
+</RelativeLayout>
