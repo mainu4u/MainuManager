@@ -59,7 +59,7 @@ class Administrador_JSON {
                 //Creamos el bocadillo
                 arrayImagenes.add(new Imagen(
                         getInt(o,"id"),
-                        getString(o,"ruta"),
+                        getString(o,"url"),
                         getUsuario(o.getJSONObject("usuario")),
                         getString(o,"type")));
 

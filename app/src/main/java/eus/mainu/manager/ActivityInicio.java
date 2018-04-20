@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import eus.mainu.manager.datalayer.Imagen;
 import eus.mainu.manager.datalayer.Valoracion;
 import eus.mainu.manager.internet.HttpGetRequest;
 
@@ -36,13 +37,15 @@ public class ActivityInicio extends AppCompatActivity {
             public void run() {
 
                 //Codigo que se ejecuta al de x tiempo
-                ArrayList<Valoracion> arrayValoraciones = consigueDatos();
+                ArrayList<Valoracion> arrayValoraciones = consigueValoraciones();
+                ArrayList<Imagen> arrayImagenes = consigueImagenes();
 
                 //Decimos que queremos navegar a la activity main
                 Intent intent = new Intent().setClass(
                         ActivityInicio.this, ActivityMain.class);
                 //Le pasamos la informacion que necesita la clase
                 intent.putExtra("arrayValoraciones",arrayValoraciones);
+                intent.putExtra("arrayImagenes",arrayImagenes);
 
                 //Iniciamos la actividad
                 startActivity(intent);
@@ -54,8 +57,7 @@ public class ActivityInicio extends AppCompatActivity {
         timer.schedule(task, SPLASH_SCREEN_DELAY);
     }
 
-    private ArrayList<Valoracion> consigueDatos(){
-
+    private ArrayList<Valoracion> consigueValoraciones(){
 
 
         HttpGetRequest request = new HttpGetRequest();
@@ -68,6 +70,22 @@ public class ActivityInicio extends AppCompatActivity {
         Log.d(TAG, "onCreate: Datos conseguidos");
 
         return arrayValoraciones;
+
+    }
+
+    private ArrayList<Imagen> consigueImagenes(){
+
+
+        HttpGetRequest request = new HttpGetRequest();
+        ArrayList<Imagen> arrayImagenes = new ArrayList<>();
+
+        if(request.isConnected(this) ) {
+            arrayImagenes = request.getImagenes();
+        }
+
+        Log.d(TAG, "onCreate: Datos conseguidos");
+
+        return arrayImagenes;
 
     }
 }

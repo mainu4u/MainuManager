@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import eus.mainu.manager.adaptadores.AdaptadorImagenes;
 import eus.mainu.manager.datalayer.Imagen;
 import eus.mainu.manager.internet.HttpGetRequest;
 
@@ -64,11 +65,21 @@ public class FragmentoFotos extends Fragment {
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
 
         //Inflamos la vista
-        //setValoraciones();
+        setImagenes();
         escuchamosSwipe();
 
 
         return view;
+    }
+
+    //Clase para crear y adaptar la informacion al recycling view
+    private void setImagenes(){
+        //Creamos el objeto de la clase adaptador
+        AdaptadorImagenes adapter = new AdaptadorImagenes(arrayImagenes, getActivity());
+
+        //Adaptamos el recyclingview
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
 

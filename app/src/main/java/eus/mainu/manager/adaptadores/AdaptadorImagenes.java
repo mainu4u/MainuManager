@@ -1,10 +1,6 @@
 package eus.mainu.manager.adaptadores;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,17 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import eus.mainu.manager.R;
 import eus.mainu.manager.datalayer.Imagen;
-import eus.mainu.manager.datalayer.Valoracion;
 import eus.mainu.manager.internet.HttpGetRequest;
 
 public class AdaptadorImagenes extends RecyclerView.Adapter<AdaptadorImagenes.ViewHolder> {
@@ -34,7 +27,7 @@ public class AdaptadorImagenes extends RecyclerView.Adapter<AdaptadorImagenes.Vi
     private Context mContext;
     private ArrayList<Imagen> arrayImagen;
 
-    public AdaptadorImagenes(ArrayList<Valoracion> arrayValoraciones, Context context) {
+    public AdaptadorImagenes(ArrayList<Imagen> arrayImagen, Context context) {
         this.arrayImagen = arrayImagen;
         mContext = context;
     }
