@@ -34,8 +34,8 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
             HttpURLConnection connection = (HttpURLConnection)myUrl.openConnection();
             connection.setRequestProperty ("Authorization", basicAuth); //Se pone el usuario y la contraseña en la cabecera
             connection.setRequestMethod("GET");
-            connection.setReadTimeout(15000);
-            connection.setConnectTimeout(15000);
+            connection.setReadTimeout(7000);
+            connection.setConnectTimeout(7000);
             connection.connect();
 
             InputStreamReader streamReader = new InputStreamReader(connection.getInputStream());

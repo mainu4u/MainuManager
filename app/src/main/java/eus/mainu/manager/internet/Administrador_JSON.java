@@ -105,7 +105,7 @@ class Administrador_JSON {
             puntuacion = o.getDouble(nombre);
         }
         else {
-            puntuacion = 3 + (5 - 3)*(new Random()).nextDouble();
+            puntuacion = 0;
         }
 
         return puntuacion;
