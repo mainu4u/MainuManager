@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import eus.mainu.manager.datalayer.Imagen;
+import eus.mainu.manager.datalayer.Report;
 import eus.mainu.manager.datalayer.Usuario;
 import eus.mainu.manager.datalayer.Valoracion;
 
@@ -18,7 +19,7 @@ import eus.mainu.manager.datalayer.Valoracion;
  * Clase para administrar los JSON que recibimos de la API
  */
 
-class Administrador_JSON {
+public class Administrador_JSON {
 
     //Metodo para pedir el listado de bocadillos, todas las operaciones de parseo del mensaje JSON se hacen dentro de el
     ArrayList<Valoracion> getValoraciones(String result){
@@ -33,7 +34,7 @@ class Administrador_JSON {
                 //Creamos el bocadillo
                 arrayValoracion.add(new Valoracion(
                         getInt(o,"id"),
-                        getDouble(o,"precio"),
+                        getDouble(o,"puntuacion"),
                         getString(o,"texto"),
                         getUsuario(o.getJSONObject("usuario")),
                         getString(o,"type")));
@@ -69,6 +70,29 @@ class Administrador_JSON {
         }
 
         return arrayImagenes;
+    }
+
+    //Metodo para pedir el listado de bocadillos, todas las operaciones de parseo del mensaje JSON se hacen dentro de el
+    public ArrayList<Report> getReports(String result){
+
+        ArrayList<Report> arrayReports = new ArrayList<>();
+
+        try {
+            JSONArray obj = new JSONArray(result);
+            for (int i = 0; i < obj.length(); i++){
+                JSONObject o = obj.getJSONObject(i);
+
+                //Creamos el bocadillo
+                arrayReports.add(new Report(
+                        getString(o,"nombre"),
+                        getString(o,"contenido")));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return arrayReports;
     }
 
     //Metodo para leer un INT de un JSONObject

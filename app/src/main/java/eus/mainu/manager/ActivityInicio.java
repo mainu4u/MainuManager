@@ -13,6 +13,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import eus.mainu.manager.datalayer.Imagen;
+import eus.mainu.manager.datalayer.Report;
 import eus.mainu.manager.datalayer.Valoracion;
 import eus.mainu.manager.internet.HttpGetRequest;
 
@@ -39,6 +40,7 @@ public class ActivityInicio extends AppCompatActivity {
                 //Codigo que se ejecuta al de x tiempo
                 ArrayList<Valoracion> arrayValoraciones = consigueValoraciones();
                 ArrayList<Imagen> arrayImagenes = consigueImagenes();
+                ArrayList<Report> arrayReports = consigueReports();
 
                 //Decimos que queremos navegar a la activity main
                 Intent intent = new Intent().setClass(
@@ -46,6 +48,7 @@ public class ActivityInicio extends AppCompatActivity {
                 //Le pasamos la informacion que necesita la clase
                 intent.putExtra("arrayValoraciones",arrayValoraciones);
                 intent.putExtra("arrayImagenes",arrayImagenes);
+                intent.putExtra("arrayReports",arrayReports);
 
                 //Iniciamos la actividad
                 startActivity(intent);
@@ -67,7 +70,7 @@ public class ActivityInicio extends AppCompatActivity {
             arrayValoraciones = request.getValoraciones();
         }
 
-        Log.d(TAG, "onCreate: Datos conseguidos");
+        Log.d(TAG, "onCreate: Valoraciones conseguidas");
 
         return arrayValoraciones;
 
@@ -83,9 +86,25 @@ public class ActivityInicio extends AppCompatActivity {
             arrayImagenes = request.getImagenes();
         }
 
-        Log.d(TAG, "onCreate: Datos conseguidos");
+        Log.d(TAG, "onCreate: Imagenes conseguidas");
 
         return arrayImagenes;
+
+    }
+
+    private ArrayList<Report> consigueReports(){
+
+
+        HttpGetRequest request = new HttpGetRequest();
+        ArrayList<Report> arrayReports = new ArrayList<>();
+
+        if(request.isConnected(this) ) {
+            arrayReports = request.getReports();
+        }
+
+        Log.d(TAG, "onCreate: Reports conseguidas");
+
+        return arrayReports;
 
     }
 }

@@ -16,86 +16,67 @@ import java.util.ArrayList;
 
 import eus.mainu.manager.R;
 import eus.mainu.manager.datalayer.Imagen;
+import eus.mainu.manager.datalayer.Report;
 import eus.mainu.manager.internet.HttpGetRequest;
 
-public class AdaptadorImagenes extends RecyclerView.Adapter<AdaptadorImagenes.ViewHolder> {
+public class AdaptadorReports extends RecyclerView.Adapter<AdaptadorReports.ViewHolder> {
 
     //Globales
     private final String TAG = "AdaptadorImagenes";
 
     //Variables
     private Context mContext;
-    private ArrayList<Imagen> arrayImagen = new ArrayList<>();
+    private ArrayList<Report> arrayReports;
 
-    public AdaptadorImagenes(ArrayList<Imagen> arrayImagen, Context context) {
-        this.arrayImagen = arrayImagen;
+    public AdaptadorReports(ArrayList<Report> arrayReports, Context context) {
+        this.arrayReports = arrayReports;
         mContext = context;
     }
 
     //Metodo que se utiliza para "Inflar" el contexto
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.recyclingview_imagenes, parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.recyclingview_reports, parent,false);
         return new ViewHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         Log.d(TAG,"onBindViewHolder: called."); //Para debuguear
 
-        holder.nombre.setText(arrayImagen.get(position).getUsuario().getNombre());
-        //Ponemos la imagen del usuario circular
-        Picasso.with(mContext)
-                .load(arrayImagen.get(position).getRuta())
-                .into(holder.foto);
-
+        holder.nombre.setText(arrayReports.get(position).getNombre());
+        holder.contenido.setText(arrayReports.get(position).getContenido());
 
         holder.aceptar.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 HttpGetRequest request = new HttpGetRequest();
-                request.aceptar(arrayImagen.get(position));
+                request.aceptar(arrayReports.get(position));
                 holder.aceptar.setVisibility(View.GONE);
-                holder.cancelar.setVisibility(View.GONE);
 
                 Log.d(TAG, "onClick: Aceptar");
             }
         }));
 
-        holder.cancelar.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                HttpGetRequest request = new HttpGetRequest();
-                request.aceptar(arrayImagen.get(position));
-                holder.aceptar.setVisibility(View.GONE);
-                holder.cancelar.setVisibility(View.GONE);
-
-                Log.d(TAG, "onClick: Cancelar");
-            }
-        }));
     }
 
     //Le dice al adaptador cuantos objetos tenemos en la lista, si devolvemos 0, no muestra ninguno
     @Override
     public int getItemCount() {
-        return arrayImagen.size();
+        return arrayReports.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nombre;
-        ImageView foto;
-        ImageButton aceptar,cancelar;
+        TextView nombre,contenido;
+        ImageButton aceptar;
 
         private ViewHolder(View itemView) {
             super(itemView);
-            nombre = itemView.findViewById(R.id.nombreUsuario1);
-            foto = itemView.findViewById(R.id.fotoUsuario1);
-            aceptar = itemView.findViewById(R.id.botonAceptar1);
-            cancelar = itemView.findViewById(R.id.botonCancelar1);
+            nombre = itemView.findViewById(R.id.nombreReport);
+            contenido = itemView.findViewById(R.id.contenidoReport);
+            aceptar = itemView.findViewById(R.id.botonAceptar2);
 
         }
     }

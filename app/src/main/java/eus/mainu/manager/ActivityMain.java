@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import eus.mainu.manager.adaptadores.AdaptadorFragmentos;
 import eus.mainu.manager.datalayer.Imagen;
+import eus.mainu.manager.datalayer.Report;
 import eus.mainu.manager.datalayer.Valoracion;
 
 public class ActivityMain extends AppCompatActivity {
@@ -20,7 +21,8 @@ public class ActivityMain extends AppCompatActivity {
 
         //Leemos los datos
         ArrayList<Valoracion> arrayValoraciones = (ArrayList<Valoracion>) getIntent().getSerializableExtra("arrayValoraciones");
-        ArrayList<Imagen> arraImagenes = (ArrayList<Imagen>) getIntent().getSerializableExtra("arrayImagenes");
+        ArrayList<Imagen> arrayImagenes = (ArrayList<Imagen>) getIntent().getSerializableExtra("arrayImagenes");
+        ArrayList<Report> arrayReports = (ArrayList<Report>) getIntent().getSerializableExtra("arrayReports");
 
         //Referenciamos los objetos
         ViewPager viewPager = findViewById(R.id.contenedor);
@@ -28,6 +30,7 @@ public class ActivityMain extends AppCompatActivity {
 
         FragmentoValoraciones fValoraciones = new FragmentoValoraciones();
         FragmentoFotos fFotos = new FragmentoFotos();
+        FragmentoReports fReports = new FragmentoReports();
         //Fragment_Otros fOtros = new Fragment_Otros();
 
         Bundle bundle = new Bundle();
@@ -35,13 +38,18 @@ public class ActivityMain extends AppCompatActivity {
         fValoraciones.setArguments(bundle);
 
         bundle = new Bundle();
-        bundle.putSerializable("arrayImagenes", arraImagenes);
+        bundle.putSerializable("arrayImagenes", arrayImagenes);
         fFotos.setArguments(bundle);
+
+        bundle = new Bundle();
+        bundle.putSerializable("arrayReports", arrayReports);
+        fReports.setArguments(bundle);
 
         //Creamos los fragmentos
         AdaptadorFragmentos adapter = new AdaptadorFragmentos(getSupportFragmentManager());
         adapter.addFragment(fValoraciones); //index 0
         adapter.addFragment(fFotos); //index 1
+        adapter.addFragment(fReports); //index 2
         //adapter.addFragment(fOtros); //index 2
 
         //Creamos las tabulaciones
@@ -49,8 +57,10 @@ public class ActivityMain extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         //Añadimos 3 iconos
-        tabLayout.getTabAt(0).setIcon(R.drawable.logo_blanco);
-        tabLayout.getTabAt(1).setIcon(R.drawable.logo_shadow);
+        tabLayout.getTabAt(0).setIcon(R.drawable.valoraciones);
+        tabLayout.getTabAt(1).setIcon(R.drawable.imagenes);
+        tabLayout.getTabAt(2).setIcon(R.drawable.reporte);
+
         //tabLayout.getTabAt(1).setIcon(R.drawable.ic_sandwich);
         //tabLayout.getTabAt(2).setIcon(R.drawable.ic_french_fries);
     }

@@ -9,29 +9,32 @@
     android:orientation="horizontal"
     android:padding="10dp">
 
-    <ImageView
-        android:id="@+id/fotoUsuario1"
-        android:layout_width="280dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/transparente"
-        app:srcCompat="@drawable/mainu_logo" />
-
     <TextView
-        android:id="@+id/nombreUsuario1"
+        android:id="@+id/nombreReport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/fotoUsuario1"
-        android:layout_toEndOf="@+id/fotoUsuario1"
-        android:background="@color/transparente"
         android:fontFamily="@font/roboto_light"
-        android:gravity="center"
+        android:maxWidth="240dp"
         android:text="@string/nombre"
+        android:layout_marginStart="5dp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/contenidoReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="240dp"
+        android:layout_alignStart="@+id/nombreReport"
+        android:layout_below="@+id/nombreReport"
+        android:fontFamily="@font/roboto_light"
+        android:text="@string/app_name"
+        android:textColor="@color/negro"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"/>
 
 
     <ImageButton
-        android:id="@+id/botonAceptar1"
+        android:id="@+id/botonAceptar2"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_alignParentEnd="true"
@@ -40,15 +43,6 @@
         android:background="@color/transparente"
         app:srcCompat="@drawable/aceptar" />
 
-    <ImageButton
-        android:id="@+id/botonCancelar1"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="11dp"
-        android:background="@color/transparente"
-        app:srcCompat="@drawable/cancelar" />
 
 
 
