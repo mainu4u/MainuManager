@@ -13,6 +13,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import eus.mainu.manager.datalayer.Imagen;
+import eus.mainu.manager.datalayer.Plato;
 import eus.mainu.manager.datalayer.Report;
 import eus.mainu.manager.datalayer.Valoracion;
 import eus.mainu.manager.internet.HttpGetRequest;
@@ -41,6 +42,7 @@ public class ActivityInicio extends AppCompatActivity {
                 ArrayList<Valoracion> arrayValoraciones = consigueValoraciones();
                 ArrayList<Imagen> arrayImagenes = consigueImagenes();
                 ArrayList<Report> arrayReports = consigueReports();
+                ArrayList<Plato> arrayPlatos = consiguePlatos();
 
                 //Decimos que queremos navegar a la activity main
                 Intent intent = new Intent().setClass(
@@ -49,6 +51,7 @@ public class ActivityInicio extends AppCompatActivity {
                 intent.putExtra("arrayValoraciones",arrayValoraciones);
                 intent.putExtra("arrayImagenes",arrayImagenes);
                 intent.putExtra("arrayReports",arrayReports);
+                intent.putExtra("arrayPlatos",arrayPlatos);
 
                 //Iniciamos la actividad
                 startActivity(intent);
@@ -105,6 +108,21 @@ public class ActivityInicio extends AppCompatActivity {
         Log.d(TAG, "onCreate: Reports conseguidas");
 
         return arrayReports;
+
+    }
+
+    private ArrayList<Plato> consiguePlatos(){
+
+        HttpGetRequest request = new HttpGetRequest();
+        ArrayList<Plato> arrayPlato = new ArrayList<>();
+
+        if(request.isConnected(this) ) {
+            arrayPlato = request.getPlatos();
+        }
+
+        Log.d(TAG, "onCreate: Platos conseguidas");
+
+        return arrayPlato;
 
     }
 }

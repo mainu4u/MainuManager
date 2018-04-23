@@ -45,15 +45,18 @@
                 android:background="@color/transparente"
                 app:srcCompat="@drawable/aniadir" />
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lista_valoraciones1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/contador">
+
+            </android.support.v7.widget.RecyclerView>
+
         </RelativeLayout>
 
 
-        <android.support.v7.widget.RecyclerView
-                android:id="@+id/lista_valoraciones1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-            </android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

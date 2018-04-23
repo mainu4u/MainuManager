@@ -2,6 +2,7 @@ package eus.mainu.manager.adaptadores;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,7 +34,7 @@ public class AdaptadorPlatos extends RecyclerView.Adapter<AdaptadorPlatos.ViewHo
     //Metodo que se utiliza para "Inflar" el contexto
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.recyclingview_valoraciones, parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.recyclingview_platos, parent,false);
         return new ViewHolder(view);
     }
 
@@ -43,7 +44,15 @@ public class AdaptadorPlatos extends RecyclerView.Adapter<AdaptadorPlatos.ViewHo
         Log.d(TAG,"onBindViewHolder: called."); //Para debuguear
 
     holder.nombre.setText(arrayPlato.get(position).getNombre());
-    holder.tipo.setText(arrayPlato.get(position).getTipo());
+    //holder.tipo.setText(((String) arrayPlato.get(position).getTipo()));
+
+    /*holder.layout.setOnClickListener((new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Log.d(TAG, "onClick: "+ arrayPlato.get(position).getNombre());
+            holder.layout.setBackgroundColor(mContext.getResources().getColor(R.color.azultransparente));
+        }
+    }));*/
 
     //holder.layout.setOnClickListener();
     }
@@ -57,13 +66,13 @@ public class AdaptadorPlatos extends RecyclerView.Adapter<AdaptadorPlatos.ViewHo
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView nombre, tipo;
-        RecyclerView layout;
+       // RecyclerView layout;
 
         private ViewHolder(View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.nombrePlato);
-            tipo = itemView.findViewById(R.id.nombrePlato);
-            layout = itemView.findViewById(R.id.layoutPlato);
+            tipo = itemView.findViewById(R.id.tipoPlato);
+            //layout = itemView.findViewById(R.id.layoutPlato);
         }
     }
 

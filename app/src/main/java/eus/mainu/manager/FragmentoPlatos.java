@@ -22,7 +22,7 @@ import eus.mainu.manager.datalayer.Plato;
 import eus.mainu.manager.datalayer.Report;
 import eus.mainu.manager.internet.HttpGetRequest;
 
-public class FragmentoMenu extends Fragment {
+public class FragmentoPlatos extends Fragment {
 
     private final String TAG = "Menu";
 
