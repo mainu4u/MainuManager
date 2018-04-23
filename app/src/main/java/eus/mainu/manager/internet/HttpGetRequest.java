@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import eus.mainu.manager.datalayer.Imagen;
+import eus.mainu.manager.datalayer.Plato;
 import eus.mainu.manager.datalayer.Report;
 import eus.mainu.manager.datalayer.Valoracion;
 
@@ -127,6 +128,23 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
         }
 
         return arrayReports;
+    }
+
+    public ArrayList<Plato> getPlatos(){
+
+        String result;
+        ArrayList<Plato> arrayPlatos = new ArrayList<>();
+
+        try {
+
+            Administrador_JSON json = new Administrador_JSON();
+            arrayPlatos = json.getPlatos(execute("https://api.mainu.eus/platos").get());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return arrayPlatos;
     }
 
     public void aceptar(Valoracion valoracion){

@@ -28,6 +28,7 @@ public class ActivityMain extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.contenedor);
         TabLayout tabLayout = findViewById(R.id.pestañas);
 
+        FragmentoMenu fMenu = new FragmentoMenu();
         FragmentoValoraciones fValoraciones = new FragmentoValoraciones();
         FragmentoFotos fFotos = new FragmentoFotos();
         FragmentoReports fReports = new FragmentoReports();
@@ -47,19 +48,20 @@ public class ActivityMain extends AppCompatActivity {
 
         //Creamos los fragmentos
         AdaptadorFragmentos adapter = new AdaptadorFragmentos(getSupportFragmentManager());
-        adapter.addFragment(fValoraciones); //index 0
-        adapter.addFragment(fFotos); //index 1
-        adapter.addFragment(fReports); //index 2
-        //adapter.addFragment(fOtros); //index 2
+        adapter.addFragment(fMenu); //index 0
+        adapter.addFragment(fValoraciones); //index 1
+        adapter.addFragment(fFotos); //index 2
+        adapter.addFragment(fReports); //index 3
 
         //Creamos las tabulaciones
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
         //Añadimos 3 iconos
-        tabLayout.getTabAt(0).setIcon(R.drawable.valoraciones);
-        tabLayout.getTabAt(1).setIcon(R.drawable.imagenes);
-        tabLayout.getTabAt(2).setIcon(R.drawable.reporte);
+        tabLayout.getTabAt(0).setIcon(R.drawable.change_menu);
+        tabLayout.getTabAt(1).setIcon(R.drawable.valoraciones);
+        tabLayout.getTabAt(2).setIcon(R.drawable.imagenes);
+        tabLayout.getTabAt(3).setIcon(R.drawable.reporte);
 
         //tabLayout.getTabAt(1).setIcon(R.drawable.ic_sandwich);
         //tabLayout.getTabAt(2).setIcon(R.drawable.ic_french_fries);

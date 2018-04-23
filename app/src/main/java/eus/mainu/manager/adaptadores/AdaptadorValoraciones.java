@@ -28,7 +28,7 @@ import eus.mainu.manager.internet.HttpGetRequest;
 public class AdaptadorValoraciones extends RecyclerView.Adapter<AdaptadorValoraciones.ViewHolder> {
 
     //Globales
-    private final String TAG = "Adaptador_Bocadillos";
+    private final String TAG = "Adaptador_Valoraciones";
 
     //Variables
     private Context mContext;

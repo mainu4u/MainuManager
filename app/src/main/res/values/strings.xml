@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">MainuManager</string>
     <string name="nombre">Nombre</string>
+    <string name="contador">Contador</string>
+
 
 </resources>

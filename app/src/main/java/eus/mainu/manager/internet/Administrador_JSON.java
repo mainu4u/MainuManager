@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import eus.mainu.manager.datalayer.Imagen;
+import eus.mainu.manager.datalayer.Plato;
 import eus.mainu.manager.datalayer.Report;
 import eus.mainu.manager.datalayer.Usuario;
 import eus.mainu.manager.datalayer.Valoracion;
@@ -86,6 +87,29 @@ public class Administrador_JSON {
                 arrayReports.add(new Report(
                         getString(o,"nombre"),
                         getString(o,"contenido")));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return arrayReports;
+    }
+
+    public ArrayList<Plato> getPlatos(String result){
+
+        ArrayList<Plato> arrayReports = new ArrayList<>();
+
+        try {
+            JSONArray obj = new JSONArray(result);
+            for (int i = 0; i < obj.length(); i++){
+                JSONObject o = obj.getJSONObject(i);
+
+                //Creamos el plato
+                arrayReports.add(new Plato(
+                        getInt(o,"id"),
+                        getString(o,"nombre"),
+                        getInt(o,"tipo")));
 
             }
         } catch (Exception e) {
