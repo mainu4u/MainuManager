@@ -45,7 +45,7 @@ public class ActivityMain extends AppCompatActivity {
 
         bundle = new Bundle();
         bundle.putSerializable("arrayReports", arrayReports);
-        fPlatos.setArguments(bundle);
+        fReports.setArguments(bundle);
 
         bundle = new Bundle();
         bundle.putSerializable("arrayPlatos", arrayPlatos);

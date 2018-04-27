@@ -97,7 +97,7 @@ public class FragmentoFotos extends Fragment {
 
                 if(request.isConnected(mContext)){
                     arrayImagenes = request.getImagenes();
-                    //Actualiza vista
+                    setImagenes();
                 }
 
                 //Esto es para ejecutar un hilo que se encarga de hacer la accion, creo

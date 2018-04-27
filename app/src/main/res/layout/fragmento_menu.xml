@@ -49,7 +49,8 @@
                 android:id="@+id/lista_valoraciones1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/contador">
+                android:layout_below="@+id/contador"
+                android:layout_marginTop="10dp">
 
             </android.support.v7.widget.RecyclerView>
 

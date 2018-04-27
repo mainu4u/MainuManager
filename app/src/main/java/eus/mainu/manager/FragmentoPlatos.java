@@ -99,6 +99,7 @@ public class FragmentoPlatos extends Fragment {
 
                 if(request.isConnected(mContext)){
                     arrayPlatos = request.getPlatos();
+                    setPlatos();
                 }
 
                 //Esto es para ejecutar un hilo que se encarga de hacer la accion, creo

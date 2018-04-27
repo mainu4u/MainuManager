@@ -65,7 +65,7 @@ public class FragmentoReports extends Fragment {
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
 
         //Inflamos la vista
-        setImagenes();
+        setReports();
         escuchamosSwipe();
 
 
@@ -73,7 +73,7 @@ public class FragmentoReports extends Fragment {
     }
 
     //Clase para crear y adaptar la informacion al recycling view
-    private void setImagenes(){
+    private void setReports(){
         //Creamos el objeto de la clase adaptador
         AdaptadorReports adapter = new AdaptadorReports(arrayReports, getActivity());
 
@@ -97,6 +97,7 @@ public class FragmentoReports extends Fragment {
 
                 if(request.isConnected(mContext)){
                     arrayReports = request.getReports();
+                    setReports();
                 }
 
                 //Esto es para ejecutar un hilo que se encarga de hacer la accion, creo
