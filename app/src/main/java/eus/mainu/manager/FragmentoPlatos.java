@@ -35,7 +35,7 @@ import eus.mainu.manager.datalayer.Report;
 import eus.mainu.manager.internet.HttpGetRequest;
 import eus.mainu.manager.internet.HttpPostRequest;
 
-public class FragmentoPlatos extends Fragment {
+public class FragmentoPlatos extends Fragment implements AdaptadorPlatos.EventHandler{
 
     private final String TAG = "Menu";
 
@@ -178,7 +178,7 @@ public class FragmentoPlatos extends Fragment {
     //Clase para crear y adaptar la informacion al recycling view
     private void setPlatos(){
         //Creamos el objeto de la clase adaptador
-        AdaptadorPlatos adapter = new AdaptadorPlatos(arrayPlatos, getActivity());
+        AdaptadorPlatos adapter = new AdaptadorPlatos(arrayPlatos, getActivity(),this);
 
         //Adaptamos el recyclingview
         recyclerView.setAdapter(adapter);
@@ -237,4 +237,11 @@ public class FragmentoPlatos extends Fragment {
         });
     }
 
+    //Para cambiar el contador
+    @Override
+    public void handle() {
+
+        contador.setText(String.valueOf(VariablesGlobales.platos.size()));
+
+    }
 }

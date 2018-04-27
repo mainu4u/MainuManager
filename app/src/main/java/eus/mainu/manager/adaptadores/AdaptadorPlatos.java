@@ -27,11 +27,13 @@ public class AdaptadorPlatos extends RecyclerView.Adapter<AdaptadorPlatos.ViewHo
     //Variables
     private Context mContext;
     private ArrayList<Plato> arrayPlato;
+    private EventHandler handler;
 
 
-    public AdaptadorPlatos(ArrayList<Plato> arrayPlato, Context context) {
+    public AdaptadorPlatos(ArrayList<Plato> arrayPlato, Context context, EventHandler handler) {
         this.arrayPlato = arrayPlato;
         mContext = context;
+        this.handler = handler;
     }
 
 
@@ -72,6 +74,8 @@ public class AdaptadorPlatos extends RecyclerView.Adapter<AdaptadorPlatos.ViewHo
             holder.aceptar.setVisibility(View.GONE);
             holder.cancelar.setVisibility(View.VISIBLE);
 
+            handler.handle();
+
             Log.d(TAG, "onClick: Seleccionado");
         }
     }));
@@ -84,6 +88,8 @@ public class AdaptadorPlatos extends RecyclerView.Adapter<AdaptadorPlatos.ViewHo
             arrayPlato.get(position).setSeleccionado(false);
             holder.cancelar.setVisibility(View.GONE);
             holder.aceptar.setVisibility(View.VISIBLE);
+
+            handler.handle();
 
 
             Log.d(TAG, "onClick: Seleccionado");
@@ -111,6 +117,10 @@ public class AdaptadorPlatos extends RecyclerView.Adapter<AdaptadorPlatos.ViewHo
             aceptar = itemView.findViewById(R.id.botonAceptarPlato);
             cancelar = itemView.findViewById(R.id.botonCancelarPlato);
         }
+    }
+
+    public interface EventHandler {
+        void handle();
     }
 
 
