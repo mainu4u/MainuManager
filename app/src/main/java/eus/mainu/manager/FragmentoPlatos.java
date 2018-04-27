@@ -17,8 +17,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,6 +32,7 @@ import eus.mainu.manager.adaptadores.AdaptadorReports;
 import eus.mainu.manager.datalayer.Plato;
 import eus.mainu.manager.datalayer.Report;
 import eus.mainu.manager.internet.HttpGetRequest;
+import eus.mainu.manager.internet.HttpPostRequest;
 
 public class FragmentoPlatos extends Fragment {
 
@@ -101,20 +106,41 @@ public class FragmentoPlatos extends Fragment {
                 Log.d(TAG, "onClick: Añadir");
 
                 final View dialogView = View.inflate(mContext, R.layout.caja_alerta, null);
+                RadioGroup radioGroup = dialogView.findViewById(R.id.botones);
+                EditText editText = dialogView.findViewById(R.id.edit1);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setView(dialogView);
                 builder.setTitle("Nuevo Plato");
                 builder.setCancelable(true)
 
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            Uri uri = Uri.parse("market://details?id=MY_APP_PACKAGE");
-                            Intent intent = new Intent (Intent.ACTION_VIEW, uri);
-                            startActivity(intent);                          }
+                            int radioId = radioGroup.getCheckedRadioButtonId();
+                            int tipo=0;
+                            switch(radioId)  {
+                                case R.id.botonPrimero:
+                                    tipo = 1;
+                                    break;
+
+                                case R.id.botonSegundo:
+                                    tipo = 2;
+                                    break;
+
+                                case R.id.botonPostre:
+                                    tipo = 3;
+                                    break;
+                            }
+
+                            Plato plato = new Plato(999,editText.getText().toString(),tipo);
+                            HttpPostRequest request = new HttpPostRequest();
+                            request.postPlato(plato);
+
+                            Toast.makeText(mContext, "Plato "+editText.getText()+" añadido", Toast.LENGTH_SHORT).show();
+                        }
                     })
 
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
                         }
@@ -134,8 +160,16 @@ public class FragmentoPlatos extends Fragment {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: Enviar");
 
+                HttpPostRequest request = new HttpPostRequest();
+                if(!VariablesGlobales.platos.isEmpty()) {
+                    request.actualizaMenu(VariablesGlobales.platos);
+                }
+                Toast.makeText(mContext, "Menu actualizado", Toast.LENGTH_SHORT).show();
+
             }
         }));
+
+
 
     }
 

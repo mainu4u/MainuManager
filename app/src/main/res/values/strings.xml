@@ -2,6 +2,9 @@
     <string name="app_name">MainuManager</string>
     <string name="nombre">Nombre</string>
     <string name="contador">Contador</string>
+    <string name="primero">Primero</string>
+    <string name="segundo">Segundo</string>
+    <string name="postre">Postre</string>
 
 
 </resources>

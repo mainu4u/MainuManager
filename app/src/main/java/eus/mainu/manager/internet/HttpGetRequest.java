@@ -25,7 +25,7 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         String url = params[0];
         String result = "", inputLine;
-        String basicAuth = "Basic " + Base64.encodeToString("mainuAdmin:m4!nU$2018".getBytes(), Base64.NO_WRAP);
+        String basicAuth = "Basic " + Base64.encodeToString("".getBytes(), Base64.NO_WRAP);
 
         try {
             URL myUrl = new URL(url);

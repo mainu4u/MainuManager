@@ -16,22 +16,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Primero"
-            android:checked="true"/>
+            android:text="@string/primero"
+            android:checked="true" />
 
         <RadioButton
             android:id="@+id/botonSegundo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Segundo" />
+            android:text="@string/segundo" />
 
         <RadioButton
             android:id="@+id/botonPostre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Postre" />
+            android:text="@string/postre" />
 
     </RadioGroup>
 
