@@ -13,12 +13,22 @@ public class Plato implements Serializable {
     private int id;
     private String nombre;
     private int tipo;
+    private boolean seleccionado;
 
 
     public Plato(int id, String nombre, int tipo) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
+        seleccionado = false;
+    }
+
+    public boolean isSeleccionado() {
+        return seleccionado;
+    }
+
+    public void setSeleccionado(boolean seleccionado) {
+        this.seleccionado = seleccionado;
     }
 
     public int getId() {

@@ -21,6 +21,7 @@
             android:fontFamily="@font/roboto_light"
             android:text="@string/contador"
             android:textColor="@color/negro"
+            android:layout_marginStart="5dp"
             android:textSize="15sp"/>
 
         <TextView
@@ -32,18 +33,28 @@
             android:textColor="@color/negro"
             android:textSize="15sp"
             android:layout_toEndOf="@+id/cuenta"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_alignBottom="@+id/cuenta"/>
 
             <ImageButton
-                android:id="@+id/botonAceptar2"
+                android:id="@+id/botonAniadir"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/cuenta"
-                android:layout_marginEnd="41dp"
+                android:layout_marginEnd="67dp"
                 android:background="@color/transparente"
                 app:srcCompat="@drawable/aniadir" />
+
+            <ImageButton
+                android:id="@+id/botonEnviar"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/cuenta"
+                android:layout_marginEnd="5dp"
+                android:background="@color/transparente"
+                app:srcCompat="@drawable/enviar" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/lista_valoraciones1"

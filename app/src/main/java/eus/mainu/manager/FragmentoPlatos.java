@@ -1,6 +1,10 @@
 package eus.mainu.manager;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -13,8 +17,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import eus.mainu.manager.adaptadores.AdaptadorPlatos;
 import eus.mainu.manager.adaptadores.AdaptadorReports;
@@ -30,6 +37,8 @@ public class FragmentoPlatos extends Fragment {
     private Context mContext;
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
+    private TextView contador;
+    private ImageButton aniadir,enviar;
 
     //Array
     ArrayList<Plato> arrayPlatos = new ArrayList<>();
@@ -55,6 +64,11 @@ public class FragmentoPlatos extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragmento_menu, container, false);
 
+        aniadir = view.findViewById(R.id.botonAniadir);
+        enviar = view.findViewById(R.id.botonEnviar);
+        contador = view.findViewById(R.id.contador);
+        contador.setText("0");
+
         //Cogemos el recycling view
         recyclerView = view.findViewById(R.id.lista_valoraciones1);
 
@@ -70,9 +84,62 @@ public class FragmentoPlatos extends Fragment {
         setPlatos();
         escuchamosSwipe();
 
+        //Ponemos los botones
+        setAniadir();
+        setEnviar();
+
 
         return view;
     }
+
+    //**********************************************************************************************
+
+    private void setAniadir(){
+        aniadir.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: Añadir");
+
+                final View dialogView = View.inflate(mContext, R.layout.caja_alerta, null);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setView(dialogView);
+                builder.setTitle("Nuevo Plato");
+                builder.setCancelable(true)
+
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Uri uri = Uri.parse("market://details?id=MY_APP_PACKAGE");
+                            Intent intent = new Intent (Intent.ACTION_VIEW, uri);
+                            startActivity(intent);                          }
+                    })
+
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    }).show();
+
+            }
+        }));
+
+    }
+
+    //**********************************************************************************************
+
+    private void setEnviar(){
+
+        enviar.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: Enviar");
+
+            }
+        }));
+
+    }
+
+    //**********************************************************************************************
 
     //Clase para crear y adaptar la informacion al recycling view
     private void setPlatos(){
@@ -82,6 +149,14 @@ public class FragmentoPlatos extends Fragment {
         //Adaptamos el recyclingview
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    //**********************************************************************************************
+
+    public void setContador(int numero){
+
+        contador.setText(String.valueOf(numero));
+
     }
 
 
@@ -99,6 +174,16 @@ public class FragmentoPlatos extends Fragment {
 
                 if(request.isConnected(mContext)){
                     arrayPlatos = request.getPlatos();
+
+                    //Ordenamos
+                    Collections.sort(arrayPlatos, (Plato s1, Plato s2) ->
+                    {
+                        return Integer.compare(s2.getTipo(), s1.getTipo());
+                    });
+
+                    Collections.reverse(arrayPlatos);
+
+                    Log.d(TAG, "onCreate: Platos ordenados");
                     setPlatos();
                 }
 

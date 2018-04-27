@@ -9,6 +9,8 @@ import android.util.Log;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -121,6 +123,16 @@ public class ActivityInicio extends AppCompatActivity {
         }
 
         Log.d(TAG, "onCreate: Platos conseguidas");
+
+        Collections.sort(arrayPlato, (Plato s1, Plato s2) ->
+        {
+            return Integer.compare(s2.getTipo(), s1.getTipo());
+        });
+
+        Collections.reverse(arrayPlato);
+
+        Log.d(TAG, "onCreate: Platos ordenados");
+
 
         return arrayPlato;
 
