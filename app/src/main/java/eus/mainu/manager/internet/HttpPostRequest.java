@@ -39,7 +39,6 @@ public class HttpPostRequest extends AsyncTask<String, Void, String> {
             httpURLConnection.setRequestProperty ("Authorization", basicAuth); //Se pone el usuario y la contraseña en la cabecera
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setRequestMethod("POST");
-            //httpURLConnection.setRequestProperty("Content-Type","application/json; charset=utf-8");
             httpURLConnection.setRequestProperty("Content-Type","application/json; charset=utf-8");
 
             DataOutputStream wr = new DataOutputStream(httpURLConnection.getOutputStream());

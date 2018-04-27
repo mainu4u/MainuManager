@@ -48,6 +48,8 @@ public class AdaptadorImagenes extends RecyclerView.Adapter<AdaptadorImagenes.Vi
         //Ponemos la imagen del usuario circular
         Picasso.with(mContext)
                 .load(arrayImagen.get(position).getRuta())
+                .fit()
+                .centerInside()
                 .into(holder.foto);
 
 
@@ -69,7 +71,7 @@ public class AdaptadorImagenes extends RecyclerView.Adapter<AdaptadorImagenes.Vi
             public void onClick(View v) {
 
                 HttpGetRequest request = new HttpGetRequest();
-                request.aceptar(arrayImagen.get(position));
+                request.cancelar(arrayImagen.get(position));
                 holder.aceptar.setVisibility(View.GONE);
                 holder.cancelar.setVisibility(View.GONE);
 

@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import eus.mainu.manager.adaptadores.AdaptadorPlatos;
 import eus.mainu.manager.adaptadores.AdaptadorReports;
@@ -72,7 +73,7 @@ public class FragmentoPlatos extends Fragment {
         aniadir = view.findViewById(R.id.botonAniadir);
         enviar = view.findViewById(R.id.botonEnviar);
         contador = view.findViewById(R.id.contador);
-        contador.setText("0");
+        contador.setText(String.valueOf(VariablesGlobales.platos.size()));
 
         //Cogemos el recycling view
         recyclerView = view.findViewById(R.id.lista_valoraciones1);
@@ -163,9 +164,8 @@ public class FragmentoPlatos extends Fragment {
                 HttpPostRequest request = new HttpPostRequest();
                 if(!VariablesGlobales.platos.isEmpty()) {
                     request.actualizaMenu(VariablesGlobales.platos);
+                    Toast.makeText(mContext, "Menu actualizado", Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(mContext, "Menu actualizado", Toast.LENGTH_SHORT).show();
-
             }
         }));
 
@@ -210,12 +210,17 @@ public class FragmentoPlatos extends Fragment {
                     arrayPlatos = request.getPlatos();
 
                     //Ordenamos
-                    Collections.sort(arrayPlatos, (Plato s1, Plato s2) ->
-                    {
-                        return Integer.compare(s2.getTipo(), s1.getTipo());
+                    Collections.sort(arrayPlatos, new Comparator<Plato>(){
+                        @Override
+                        public int compare(Plato op1, Plato op2){
+                            if(op1.getTipo() < op2.getTipo())
+                                return -1;
+                            else if(op1.getTipo() > op2.getTipo())
+                                return 1;
+                            else
+                                return op1.getNombre().compareToIgnoreCase(op2.getNombre());
+                        }
                     });
-
-                    Collections.reverse(arrayPlatos);
 
                     Log.d(TAG, "onCreate: Platos ordenados");
                     setPlatos();
