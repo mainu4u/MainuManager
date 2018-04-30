@@ -49,6 +49,29 @@
         android:background="@color/transparente"
         app:srcCompat="@drawable/cancelar" />
 
+    <ImageButton
+        android:id="@+id/botonOficial1"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignBottom="@+id/fotoUsuario1"
+        android:layout_toEndOf="@+id/fotoUsuario1"
+        android:layout_marginLeft="35dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/transparente"
+        app:srcCompat="@drawable/corazon_vacio" />
+
+    <ImageButton
+        android:id="@+id/botonOficial2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignBottom="@+id/fotoUsuario1"
+        android:layout_toEndOf="@+id/fotoUsuario1"
+        android:layout_marginLeft="35dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/transparente"
+        app:srcCompat="@drawable/corazon"
+        android:visibility="gone"/>
+
 
 
 

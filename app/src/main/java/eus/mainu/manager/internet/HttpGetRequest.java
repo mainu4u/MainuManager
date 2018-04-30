@@ -200,4 +200,14 @@ public class HttpGetRequest extends AsyncTask<String, Void, String> {
         }
     }
 
+    public void oficial(Imagen imagen){
+
+
+        try {
+            String result = execute("https://api.mainu.eus/update_img/"+imagen.getTipo()+"/"+imagen.getId()+"?action=oficial").get();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
