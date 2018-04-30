@@ -93,7 +93,7 @@ public class AdaptadorValoraciones extends RecyclerView.Adapter<AdaptadorValorac
         public void onClick(View v) {
 
             HttpGetRequest request = new HttpGetRequest();
-            request.aceptar(arrayValoraciones.get(position));
+            request.cancelar(arrayValoraciones.get(position));
             holder.aceptar.setVisibility(View.GONE);
             holder.cancelar.setVisibility(View.GONE);
 
