@@ -1,6 +1,6 @@
 ﻿>*Este repositorio contiene el cliente de gestión y mantenimiento para Android del proyecto **MainU**.*
 
-<img src=https://i.imgur.com/Wc9VOaZ.png?1 width=150px/>
+<img src=https://i.imgur.com/IK8XoTd.png width=150px/>
 
 MainU Manager
 ===================
