@@ -73,7 +73,6 @@ public class FragmentoPlatos extends Fragment implements AdaptadorPlatos.EventHa
         aniadir = view.findViewById(R.id.botonAniadir);
         enviar = view.findViewById(R.id.botonEnviar);
         contador = view.findViewById(R.id.contador);
-        contador.setText(String.valueOf(VariablesGlobales.platos.size()));
 
         //Cogemos el recycling view
         recyclerView = view.findViewById(R.id.lista_valoraciones1);
@@ -177,6 +176,10 @@ public class FragmentoPlatos extends Fragment implements AdaptadorPlatos.EventHa
 
     //Clase para crear y adaptar la informacion al recycling view
     private void setPlatos(){
+
+        //Actualizamos el contador
+        contador.setText(String.valueOf(VariablesGlobales.platos.size()));
+
         //Creamos el objeto de la clase adaptador
         AdaptadorPlatos adapter = new AdaptadorPlatos(arrayPlatos, getActivity(),this);
 
@@ -203,11 +206,16 @@ public class FragmentoPlatos extends Fragment implements AdaptadorPlatos.EventHa
             //Accion que se ejecuta cuando se activa
             @Override
             public void onRefresh() {
+
+                int tam = arrayPlatos.size();
+
                 //Creamos otro request porque solo se puede llamar al asynctask una vez
                 HttpGetRequest request = new HttpGetRequest();
 
                 if(request.isConnected(mContext)){
                     arrayPlatos = request.getPlatos();
+                    VariablesGlobales.platos.clear();
+
 
                     //Ordenamos
                     Collections.sort(arrayPlatos, new Comparator<Plato>(){
@@ -223,7 +231,9 @@ public class FragmentoPlatos extends Fragment implements AdaptadorPlatos.EventHa
                     });
 
                     Log.d(TAG, "onCreate: Platos ordenados");
-                    setPlatos();
+                    if(tam != arrayPlatos.size()){
+                        setPlatos();
+                    }
                 }
 
                 //Esto es para ejecutar un hilo que se encarga de hacer la accion, creo
