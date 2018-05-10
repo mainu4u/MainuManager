@@ -78,6 +78,22 @@ public class AdaptadorImagenes extends RecyclerView.Adapter<AdaptadorImagenes.Vi
                 Log.d(TAG, "onClick: Cancelar");
             }
         }));
+
+        holder.oficial1.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                HttpGetRequest request = new HttpGetRequest();
+                request.aceptar(arrayImagen.get(position));
+                request.oficial(arrayImagen.get(position));
+                holder.aceptar.setVisibility(View.GONE);
+                holder.cancelar.setVisibility(View.GONE);
+                holder.oficial1.setVisibility(View.GONE);
+                holder.oficial2.setVisibility(View.VISIBLE);
+
+                Log.d(TAG, "onClick: Cancelar");
+            }
+        }));
     }
 
     //Le dice al adaptador cuantos objetos tenemos en la lista, si devolvemos 0, no muestra ninguno
@@ -90,7 +106,7 @@ public class AdaptadorImagenes extends RecyclerView.Adapter<AdaptadorImagenes.Vi
 
         TextView nombre;
         ImageView foto;
-        ImageButton aceptar,cancelar;
+        ImageButton aceptar,cancelar, oficial1,oficial2;
 
         private ViewHolder(View itemView) {
             super(itemView);
@@ -98,6 +114,8 @@ public class AdaptadorImagenes extends RecyclerView.Adapter<AdaptadorImagenes.Vi
             foto = itemView.findViewById(R.id.fotoUsuario1);
             aceptar = itemView.findViewById(R.id.botonAceptar1);
             cancelar = itemView.findViewById(R.id.botonCancelar1);
+            oficial1 = itemView.findViewById(R.id.botonOficial1);
+            oficial2 = itemView.findViewById(R.id.botonOficial2);
 
         }
     }
